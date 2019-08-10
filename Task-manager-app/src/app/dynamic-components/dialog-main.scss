@@ -1,0 +1,24 @@
+.header{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    background: #2196f3;
+    color: white;
+    font-variant: small-caps;
+    box-shadow: inset 0px 0px 2px 2px #1d65a0;
+    box-shadow: inset 0px 2px 2px 2px #1d65a0;
+    h2{
+        font-size: 20px;
+        margin: 5px;
+    }
+    button{
+        margin-left: auto;
+        .mat-icon{
+            transition: 0.2s;
+            cursor: pointer;
+            &:hover{
+                color: #e2e2e2;
+            }
+        }
+    }
+}

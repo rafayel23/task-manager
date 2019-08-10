@@ -1,0 +1,79 @@
+
+form{
+
+    background: #00000015;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .wrapper{
+        flex: 1 0 auto;
+
+        button{
+            color: gray;
+        }
+
+        .filter-section{
+            margin-bottom: 10px;
+        }
+    
+        .heading{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right,white,#f0f0f0);
+            box-shadow: inset 0px 0px 2px 2px #dadada;
+            box-shadow: inset 1px 0px 2px 2px #dadada;
+            
+            span{
+                text-indent: 10px;
+                font-size: 12px;
+                font-weight: normal;
+                color: gray;
+            }
+            button.mat-button{
+                line-height: 30px;
+                font-size: 12px;
+                border-radius: 0;
+                transition: 0.1s;
+                &:hover{
+                    box-shadow: inset 0px 0px 2px 2px #dadada;
+                }
+            }
+    
+        }
+    
+        .filter-section{
+            padding: 10px;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+    
+            .mat-radio-group{
+                display: flex;
+                flex-direction: column;
+                .mat-radio-button{
+                    padding: 5px;
+                    padding-left: 0;
+                    font-size: 12px;
+                }
+            }
+        }
+    
+    
+    }
+
+    .global-reset{
+        flex-shrink: 0;
+        border-radius: 0;
+        width: 100%;
+        background: linear-gradient(to right,white,#f0f0f0);
+        box-shadow: inset 0px 0px 2px 2px #dadada;
+        box-shadow: inset 1px 0px 2px 2px #dadada;
+        color: gray;
+    }
+    
+}
+
+
+

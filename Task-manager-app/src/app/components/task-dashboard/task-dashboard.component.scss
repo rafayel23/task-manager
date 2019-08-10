@@ -1,0 +1,85 @@
+
+
+
+.dashboard-container{
+  
+  padding: 20px;
+  margin: 10px 25px;
+
+  table{
+      width: 100%;
+      table-layout: fixed;
+
+      tr{
+          transition: all 0.3s;
+      }
+
+      th{
+          font-weight: bold;
+          font-size: 15px;
+          padding-right: 15px;
+          &:last-of-type{
+              padding-right: 0;
+              width: 40px;
+          }
+      }
+      td{
+          font-size: 12px;
+          padding-right: 15px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          &:last-of-type{
+              padding-right: 0;
+              width: 40px;
+          }
+          &.no-records{
+            font-variant: small-caps;
+            color: #acacac;
+            font-size: 30px;
+            padding: 50px;
+            background: rgb(223, 223, 223);
+            text-align: center;
+          }
+      }
+
+  }
+}
+
+
+.inactive{
+  color: gray;
+  opacity: 0.2;
+}
+
+.today-task td{
+  color: #00aeff;
+  &:first-of-type{
+      border-left: solid #00aeff;
+
+  }
+}
+
+.passed-task td{
+  color: red;
+  &:first-of-type{
+      border-left: solid red;
+
+  }
+}
+
+.done-task{
+  opacity: 0.7;
+  background: #6cb1ae;
+  td{
+      color: white;
+  }
+}
+
+.editing-task{
+  opacity: 0.3;
+  background: #d1d1d1;
+  td{
+      color: #585858;
+  }
+}

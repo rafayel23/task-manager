@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="header">
+        <h2>Tasks for today</h2>
+        <button tabindex="-1" mat-icon-button mat-dialog-close>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    
+    <mat-dialog-content>
+        <mat-list *ngIf="actions.todayTasks().length; else noTasks">
+            <mat-list-item *ngFor="let task of actions.todayTasks()">
+                <div class="single-task">
+                    <div class="info">
+                        <strong>{{task.title}}</strong>
+                        <small> (<b>{{task.placeName}}</b> , {{task.address}}) </small>
+                    </div>
+                    <div class="actions">
+                        <mat-icon (click)="actions.remove(task.id)" color="warn">delete</mat-icon>
+                        <mat-icon (click)="actions.markAsDone(task.id)" color="primary">check_circle</mat-icon>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+        <ng-template #noTasks>
+            <div class="no-tasks-for-today">
+                <span>No tasks for today</span> 
+            </div>
+        </ng-template>
+    </mat-dialog-content>
+</div>

@@ -1,0 +1,21 @@
+<div class="container">
+
+    <div class="header">
+        <h2>{{options.isAlert ? 'Alert' : 'Confirm'}}</h2>
+    </div>
+    <div class="dialog-body">
+        <mat-dialog-content>
+            <div *ngFor="let row of options.message" [style.height]="row ? 'initial' : '20px'">{{row}}</div>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <div class="full" *ngIf="options.isAlert; else confirm">
+                <button class="full" mat-dialog-close mat-flat-button color="primary">OK</button>
+            </div>
+            <ng-template #confirm>
+                <button [appFeedback]="options.feedback" (click)="options.accept()" mat-dialog-close mat-flat-button color="primary">OK</button>
+                <button mat-raised-button mat-dialog-close>Cancel</button>
+            </ng-template>
+        </mat-dialog-actions>       
+    </div>
+            
+</div>

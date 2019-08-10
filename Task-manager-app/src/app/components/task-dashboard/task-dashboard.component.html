@@ -1,0 +1,117 @@
+<div class="dashboard-container mat-elevation-z8">
+
+  <table mat-table matSort [trackBy]="trackById">
+
+    <!-- Title -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <td mat-cell *matCellDef="let task">{{task.title}}</td>
+    </ng-container>
+
+    <!-- Description -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+      <td mat-cell *matCellDef="let task">{{task.description}}</td>
+    </ng-container>
+
+    <!-- Deadline -->
+    <ng-container matColumnDef="deadline">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Deadline</th>
+      <td mat-cell *matCellDef="let task">{{task.deadline | date | nearestDays}}</td>
+    </ng-container>
+
+    <!-- Place name -->
+    <ng-container matColumnDef="placeName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Place Name</th>
+      <td mat-cell *matCellDef="let task">{{task.placeName}}</td>
+    </ng-container>
+
+    <!-- Address -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+      <td mat-cell *matCellDef="let task">{{task.address}}</td>
+    </ng-container>
+
+    <!-- Status -->
+    <ng-container matColumnDef="isDone">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let task">{{task | status}}</td>
+    </ng-container>
+
+
+    <!-- Settings -->
+    <ng-container matColumnDef="settings">
+        <th mat-header-cell *matHeaderCellDef>
+          <button [disabled]="editingId || !taskList.length" mat-icon-button [matMenuTriggerFor]="global_menu">
+            <mat-icon>menu</mat-icon>
+          </button>
+
+          <mat-menu #global_menu="matMenu">
+
+            <button (click)="removeAllTasks()" mat-menu-item>
+                <mat-icon color="warn">delete</mat-icon>
+                <span>Remove all</span>
+            </button>
+
+            <button [disabled]="!_deadline.isThereMissedTasks" (click)="removeMissedTasks()" mat-menu-item>
+                <mat-icon color="primary" [class.inactive]="!_deadline.isThereMissedTasks">delete</mat-icon>
+                <span>Remove missed</span>
+            </button>
+
+            <button (click)="markAllAsDone()" mat-menu-item>
+                <mat-icon color="primary">check_circle</mat-icon>
+                <span>Mark all as done</span>
+            </button>
+
+          </mat-menu>
+
+        </th>
+        <td style="color: initial" mat-cell *matCellDef="let task">
+            
+            <button [disabled]="editingId" mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+
+                <button (click)="removeTask(task.id)" mat-menu-item>
+                    <mat-icon color="warn">delete</mat-icon>
+                    <span>Remove</span>
+                </button>
+
+                <button [disabled]="task.isDone" (click)="prepareToEditing(task)" mat-menu-item>
+                    <mat-icon color="primary" [class.inactive]="task.isDone">edit</mat-icon>
+                    <span>Edit</span>
+                </button>
+
+                <button [disabled]="_deadline.isPassed(task.deadline) && !task.isDone" (click)="toggleStatus(task.id)" mat-menu-item>
+                    <mat-icon [class.inactive]="_deadline.isPassed(task.deadline) && !task.isDone" color="primary">check_circle</mat-icon>
+                    <span>{{task.isDone ? 'Mark as undone' : 'Mark as done'}}</span>
+                </button>
+
+            </mat-menu>
+
+        </td>
+    </ng-container>
+
+
+    <!-- No Records Found -->
+    <ng-container matColumnDef="noRecord">
+      <td class="no-records" mat-footer-cell *matFooterCellDef colspan="7">No Records Found</td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let task; columns: displayedColumns;" [ngClass]="taskStyles(task)"></tr>
+    <tr mat-footer-row *matFooterRowDef="['noRecord']" [hidden]="!isEmpty"></tr>
+    
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20, 30]">
+  </mat-paginator>
+  
+</div>

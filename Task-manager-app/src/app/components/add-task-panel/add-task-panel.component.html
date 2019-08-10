@@ -1,0 +1,97 @@
+
+<mat-expansion-panel [expanded]="editingId">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <div class="title">
+                <mat-icon style="color: #5f5f5f">{{editingId ? 'edit' : 'add'}}</mat-icon>
+                <strong style="color: #5f5f5f">{{editingId ? 'Edit Task' : 'Add Task'}}</strong>
+            </div>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    
+    <!-- Expansion panel content -->
+
+    <form [formGroup]="taskForm">
+
+        <div class="inputs">
+
+            <!-- Title -->
+            <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input appTrim matInput formControlName="title" autocomplete="off">
+                <mat-error>Required field</mat-error>
+            </mat-form-field>
+            
+            <!-- Description -->
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <input appTrim matInput formControlName="description" autocomplete="off">
+                <mat-error>Required field</mat-error>
+            </mat-form-field>
+            
+            <!-- Deadline -->
+            <mat-form-field>
+                <mat-label>Deadline</mat-label>
+                <input [min]="_deadline._today" matInput formControlName="deadline" autocomplete="off"  [matDatepicker]="deadlinePicker">
+                <mat-hint align="end">click to pick date &#8682;</mat-hint>
+                <mat-hint align="start">mm/dd/yyyy</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="deadlinePicker"></mat-datepicker-toggle>
+                <mat-datepicker #deadlinePicker></mat-datepicker>
+                <mat-error *ngIf="requiredDeadline && !invalidDateFormat">Required field</mat-error>
+                <mat-error *ngIf="invalidDateFormat">Invalid date format</mat-error>
+                <mat-error *ngIf="invalidDeadline">Deadline can't be earlier than today</mat-error>
+            </mat-form-field>
+            <!-- Placename -->
+            <mat-form-field>
+                <mat-label>Place name</mat-label>
+                <input appTrim matInput formControlName="placeName" autocomplete="off">
+                <mat-error>Required field</mat-error>
+            </mat-form-field>
+        
+            <!-- Address -->
+            <mat-form-field>
+                <mat-label>Address</mat-label>
+                <input appTrim matInput formControlName="address" autocomplete="off">
+                <mat-error>Required field</mat-error>
+            </mat-form-field>
+
+        </div>
+        
+        <!-- Submit -->
+        <button
+        appFeedback="Task was successfully added"
+        [duration]="6000"
+        class="submit"
+        *ngIf="!editingId; else editing"
+        [disabled]="taskForm.invalid"
+        mat-raised-button 
+        color="primary"
+        type="button"
+        (click)="addTask()"
+        >Submit</button>
+
+        <ng-template #editing>
+
+            <div class="edit-actions">
+                <button
+                [disabled]="taskForm.invalid"
+                mat-flat-button 
+                color="primary"
+                type="button"
+                (click)="editTask()"
+                >Edit</button>
+            
+                <button
+                mat-raised-button
+                type="button"
+                (click)="cancelEditing()"
+                >Cancel</button>
+            </div>
+            
+        </ng-template>
+        
+        
+    </form>
+
+</mat-expansion-panel>

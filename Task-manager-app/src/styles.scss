@@ -1,0 +1,87 @@
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+html, body { 
+  height: 100%;
+}
+
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
+
+
+/* --- Material dialog custom classes --- */
+
+.confirm-dialog-class .mat-dialog-container{
+
+    min-width: 400px;
+    background: white;
+    font-size: 13px;
+    padding: 0;
+    overflow: hidden;
+    color: #2196f3;
+    box-shadow: 0px 0px 5px 1px gray;
+    border-radius: 5px;
+
+}
+
+.today-tasks-dialog-class .mat-dialog-container{
+
+    min-width: 600px;
+    background: white;
+    font-size: 13px;
+    padding: 0;
+    overflow-x: hidden;
+    color: #2196f3;
+    box-shadow: 0px 0px 5px 3px gray;
+    border-radius: 3px;
+
+}
+
+.warning-snackbar{
+    .mat-simple-snackbar-action {
+        color: #2196f3 !important;
+    }
+}
+
+
+/* --- Angular Material theming --- */
+
+@import '~@angular/material/theming';
+ 
+@include mat-core();
+ 
+$candy-app-primary: mat-palette($mat-blue);
+$candy-app-warn:    mat-palette($mat-red);
+$candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+$candy-app-theme: mat-light-theme(
+  $candy-app-primary,
+  $candy-app-accent,
+  $candy-app-warn
+);
+
+@include angular-material-theme($candy-app-theme);
+
+
+
+/* --- Custom scrollbars --- */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px #0000004d;
+}
+ 
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #acacac;
+  outline: 1px solid slategrey;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9b9b9b; 
+}

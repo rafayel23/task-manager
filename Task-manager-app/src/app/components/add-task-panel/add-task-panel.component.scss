@@ -1,0 +1,46 @@
+
+.mat-expansion-panel{
+    margin: 20px;
+    .title{
+        display: flex;
+        align-items: center;
+        .mat-icon{
+            margin-right: 5px;
+        }
+    }
+}
+
+form {
+    
+    display: flex;
+    flex-direction: column;
+
+    .inputs{
+        display: flex;
+        flex-wrap: wrap;
+
+        mat-form-field{
+            flex-grow: 1;
+            margin: 10px;
+            .mat-hint{
+                margin-right: 8px;
+            }
+        }
+    }
+
+    .submit{
+        width: 90%;
+        margin: auto;
+    }
+
+    .edit-actions{
+        display: flex;
+        justify-content: center;
+        button{
+            width: 200px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    }
+    
+}

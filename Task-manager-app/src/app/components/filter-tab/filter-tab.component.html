@@ -1,0 +1,91 @@
+
+<!-- Filter form -->
+<form [formGroup]="filterForm">
+
+    <div class="wrapper">
+
+    <div class="heading">
+        <span>DATES</span>
+        <button mat-button (click)="resetExactDate(); resetDateScope()">Reset</button>
+    </div>
+
+    <div class="filter-section">
+        
+        <!-- Date filter shorthands -->
+        <mat-radio-group (change)="resetDateScope()" formControlName="exactDate">
+            <mat-radio-button color="primary" [value]="_deadline._today">Today</mat-radio-button>
+            <mat-radio-button color="primary" [value]="_deadline._tommorow">Tommorow</mat-radio-button>
+        </mat-radio-group>
+
+        
+        <!-- Date scope filter -->
+        <mat-form-field>
+            <mat-label style="font-size: 12px">From</mat-label>
+            <mat-hint style="font-size: 10px">mm/dd/yyyy</mat-hint>
+            <input [max]="maxTreshold" (input)="resetExactDate()" (dateInput)="resetExactDate()" matInput formControlName="minDate" autocomplete="off"  [matDatepicker]="minDatePicker">
+            <mat-datepicker-toggle matSuffix [for]="minDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #minDatePicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label style="font-size: 12px">To</mat-label>
+            <mat-hint style="font-size: 10px">mm/dd/yyyy</mat-hint>
+            <input [min]="minTreshold" (input)="resetExactDate()" (dateInput)="resetExactDate()" matInput formControlName="maxDate" autocomplete="off"  [matDatepicker]="maxDatePicker">
+            <mat-datepicker-toggle matSuffix [for]="maxDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #maxDatePicker></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+
+    <div class="heading">
+        <span>STATUS</span>
+        <button mat-button (click)="resetStatus()">Reset</button>
+    </div>
+
+    <div class="filter-section">
+
+        <!-- Status filter -->
+        <mat-radio-group formControlName="status">
+            <mat-radio-button color="primary" [value]="status.done">Done</mat-radio-button>
+            <mat-radio-button color="primary" [value]="status.in_progress">In Progress</mat-radio-button>
+            <mat-radio-button color="primary" [value]="status.missed">Missed</mat-radio-button>
+        </mat-radio-group>
+
+    </div>
+
+
+    <div class="heading">
+        <span>PLACE</span>
+        <button mat-button (click)="resetPlace()">Reset</button>
+    </div>
+
+    <div class="filter-section">
+        <mat-form-field>
+            <mat-label style="font-size: 12px">Select place name</mat-label>
+            <mat-select formControlName="placeName">
+                <mat-option *ngFor="let place of placeNames" [value]="place">{{place}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+
+    <div class="heading">
+        <span>ADDRESS</span>
+        <button mat-button (click)="resetAdress()">Reset</button>
+    </div>
+
+    <div class="filter-section last-section">
+        <mat-form-field>
+            <mat-label style="font-size: 12px">Select address</mat-label>
+            <mat-select formControlName="address">
+                <mat-option *ngFor="let address of addresses" [value]="address">{{address}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    </div>
+
+    <button class="global-reset" mat-flat-button (click)="resetAll()">Reset All</button>
+
+
+</form>

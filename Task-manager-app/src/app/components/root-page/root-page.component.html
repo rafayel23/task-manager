@@ -1,0 +1,50 @@
+
+
+<mat-drawer-container>
+
+    <mat-drawer #sidenav mode="side">
+        <app-filter-tab (filterChange)="filterChangeHandler($event)"></app-filter-tab>
+    </mat-drawer>
+
+    <mat-drawer-content id="visible-content">
+        <div>
+            <div class="toolbar">
+                <button class="filter-menu" type="button" mat-button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <app-search-box (searchTermChange)="searchTerm = $event; updateTasks(false);"></app-search-box>
+
+                <mat-slide-toggle 
+                [appFeedback]="applyFilters ? 'Filters OFF' : 'Filters ON'" 
+                [duration]="1000" 
+                color="primary" 
+                [(ngModel)]="applyFilters" 
+                (ngModelChange)="updateTasks(false)"
+                >
+                    <span class="toggleLable" [style.opacity]="applyFilters ? 1 : 0.3">Filters</span>
+                </mat-slide-toggle>
+                
+                <div class="links">
+                    <mat-icon
+                    (click)="showTodayTasks()"
+                    matBadgeColor="warn" 
+                    matTooltipClass="preline"
+                    [matBadge]="_deadline.getTodayTasks().length"
+                    [matTooltip]="todayTasksTooltip"
+                    >inbox</mat-icon>
+                    <a target="_blank" href="https://github.com/rafayel23/Task-manager#task-manager-api">
+                        <mat-icon matTooltip="Help">help</mat-icon>
+                    </a>
+                </div>
+                
+            </div>
+            
+            <app-add-task-panel></app-add-task-panel>
+            <app-task-dashboard [taskList]="taskList"></app-task-dashboard>
+    
+        </div>
+    
+    </mat-drawer-content>
+
+
+</mat-drawer-container>

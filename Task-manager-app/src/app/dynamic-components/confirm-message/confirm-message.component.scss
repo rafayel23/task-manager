@@ -1,0 +1,18 @@
+
+.dialog-body{
+    padding: 15px;
+
+    .mat-dialog-actions{
+        min-height: unset;
+        margin: unset;
+        padding: 45px 0 0;
+
+        button{
+            margin-right: 5px;
+        }
+    }
+
+}
+.full{
+    width: 100%;
+}

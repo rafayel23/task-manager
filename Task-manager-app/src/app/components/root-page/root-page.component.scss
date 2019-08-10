@@ -1,0 +1,48 @@
+
+.mat-drawer-container{
+    min-height: 100vh;
+    height: 100%;
+}
+
+.mat-drawer{
+    width: 300px;
+}
+
+.toolbar{
+    display: flex;
+    align-items: center;
+    .filter-menu{
+        margin: 10px;
+    }
+    .toggleLable{
+        transition: 0.2s;
+        font-size: 13px;
+        color: #727272;
+        font-weight: bold;
+        font-variant: small-caps;
+    }
+    .links{
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        margin-right: 30px;
+        margin-top: 10px;
+        .mat-icon{
+            cursor: pointer;
+            height: unset;
+            width: unset;
+            font-size: 35px;
+            color: #00aeff;
+            &:last-of-type{
+                margin-left: 15px;
+            }
+        }
+    } 
+}
+
+::ng-deep .mat-tooltip  {
+    white-space: pre-line !important;
+}
+::ng-deep .mat-slide-toggle-thumb-container  {
+    cursor: pointer !important;
+}
