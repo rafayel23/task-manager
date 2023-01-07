@@ -11,5 +11,3 @@ export class AppComponent {
     this._storage.initializeStorage();
   }
 }
-
-let test = 8;
