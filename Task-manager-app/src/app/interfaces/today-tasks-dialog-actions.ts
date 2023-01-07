@@ -5,3 +5,4 @@ export interface TodayTasksDialogActions {
     remove: (id: string) => void;
     markAsDone: (id: string) => void;
 }
+
