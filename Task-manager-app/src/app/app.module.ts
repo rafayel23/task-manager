@@ -121,3 +121,5 @@ from '@angular/material';
 })
 
 export class AppModule {}
+
+let x = 'b2';
