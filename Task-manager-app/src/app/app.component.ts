@@ -12,4 +12,4 @@ export class AppComponent {
   }
 }
 
-let test = 3;
+let test = 4;
