@@ -10,5 +10,4 @@ export class AppComponent {
   constructor(private _storage: StorageService){
     this._storage.initializeStorage();
   }
-  
 }
